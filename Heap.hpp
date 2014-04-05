@@ -10,19 +10,21 @@ private:
     struct Node
     {
         Node(Item * item, float cost) : item(item), cost(cost) {}
+        Node(Node & node) : item(node.item), cost(node.cost) {}
+        Node() : item(0), cost(0) { }
         Item * item;
         float cost;
     };
     bool minHeap;
     Vector<Node> nodes;
-    unsigned int num_elts;
+    int num_elts;
 
 public:
     Heap(bool minHeap = true) : num_elts(0), minHeap(minHeap) { }
     void addItem(Item * item, float cost);
     void removeItem(Item * item);
     Item * pop();
-
+    int size() { return num_elts; }
 };
 
 template <class Item>
@@ -77,6 +79,7 @@ Item * Heap<Item>::pop()
 {
     Item * item = nodes[0].item;
     removeItem(item);
+    return item;
 }
 
 #endif // HEAP_H_

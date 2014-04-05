@@ -34,12 +34,12 @@ public:
 	~List();
 	void addItem(Item * item);
 	bool removeItem(Item * item);
-	unsigned int getSize() { return num_elts; }
+	unsigned int size() { return num_elts; }
 	Iterator getIterator();
 };
 
 template <class Item>
-void List<Item>::List(List<Item> & l)
+List<Item>::List(List<Item> & l)
 {
     /* delete current list */
     reset();
@@ -48,25 +48,27 @@ void List<Item>::List(List<Item> & l)
     Node * n = l.first;
     while(n)
     {
-        addItem(n -> item)
+        addItem(n -> item);
         n = n -> next;
     }
 }
 
 template <class Item>
-typename List<Item> & operator=(const List<Item> & l)
+List<Item> & List<Item>::operator=(const List<Item> & l)
 {
     reset();
 
     Node * n = l.first;
     while(n)
     {
-        addItem(n -> item)
+        addItem(n -> item);
         n = n -> next;
     }
 
     return *this;
 }
+
+template <class Item>
 void List<Item>::reset()
 {
 	/* delete all remaining nodes */

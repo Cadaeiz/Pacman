@@ -18,7 +18,7 @@ int main()
 
 	/* for writing fps on screen while debugging */
 	sf::Font font;
-	font.loadFromFile("arial.ttf");
+	font.loadFromFile("text/arial.ttf");
 	sf::Text fps;
 	fps.setFont(font);
 	fps.setCharacterSize(15);

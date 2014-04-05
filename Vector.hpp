@@ -16,17 +16,16 @@ public:
     Vector<Item> & operator=(const Vector<Item> & vect);
     Item & operator[](unsigned int i) { return items[i]; }
     const Item & operator[](unsigned int i) const { return items[i]; }
-    void push_back(Item & item);
+    void push_back(const Item & item);
     void pop_back();
     void swap(unsigned int i, unsigned int j);
-    unsigned int getSize() { return num_elts; }
+    unsigned int size() { return num_elts; }
 };
 
 template <class Item>
 Vector<Item>::Vector(unsigned int capacity = 10) : capacity(capacity), num_elts(0)
 {
     items = new Item[capacity];
-    num_elts = 0;
 }
 
 template <class Item>
@@ -44,13 +43,13 @@ Vector<Item> & Vector<Item>::operator=(const Vector<Item> & vect)
     capacity = vect.capacity;
     num_elts = vect.num_elts;
 
-    items = new Item[capacity]
+    items = new Item[capacity];
     for (int i = 0; i < capacity; i++)
         items[i] = vect.items[i];
 }
 
 template <class Item>
-void Vector<Item>::push_back(Item & item)
+void Vector<Item>::push_back(const Item & item)
 {
     /* expand capacity if necessary */
     if (num_elts > capacity - 1)
